@@ -4,7 +4,7 @@ def frame_maker(root,side):
     temp.pack(side=side,expand=YES,fill=BOTH)
     return temp
 def button_maker(root,text,side,command):
-    temp=Button(root,text=text,command=command)
+    temp=Button(root,text=text,command=command,bg="gray40",fg="steelblue",font=("arial",10,"bold"))
     temp.pack(side=side,expand=YES,fill=BOTH)
     return temp
 def calc(w):
@@ -14,7 +14,7 @@ def calc(w):
         w.set("Error")
 object_list=["123","456","789"]
 if __name__=="__main__":
-    s=Frame()
+    s=Frame(bg="gray40")
     s.pack(expand=YES,fill=BOTH)
     display=StringVar()
     disp=Entry(s,textvariable=display)
