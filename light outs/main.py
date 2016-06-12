@@ -55,6 +55,7 @@ def reset():
 if __name__=="__main__":
     but_array=[]
     program=Tk()
+    program.title("Lights Out")
     root=Frame(program)
     root.pack(expand=YES,fill=BOTH)
     label_1=Label(root,text="Play . . .")
