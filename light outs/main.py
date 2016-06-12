@@ -36,7 +36,7 @@ def but_func(x,y):
             but_array[x][y-1].config(bg="black")
     if win_check()==True:
         label_1.config(text="You Win The Game")
-        
+    label_turn.config(text=str(int(list(label_turn.config()["text"])[-1])+1))        
     
 def rand_gen():
     rand_col=[]
@@ -59,6 +59,13 @@ if __name__=="__main__":
     root.pack(expand=YES,fill=BOTH)
     label_1=Label(root,text="Play . . .")
     label_1.pack()
+    label_frame=Frame(root)
+    label_frame.pack(expand=YES,fill=BOTH,side=TOP)
+    label_show=Label(label_frame,text="Click : ")
+    label_show.pack(side=LEFT)
+    label_turn=Label(label_frame,text="0")
+    label_turn.pack(side=RIGHT)
+    
     val=IntVar()
     for i in range(5):
         but_temp=[]
