@@ -1,6 +1,12 @@
 from tkinter import *
 from random import *
-
+import sys
+def win_check():
+    for i in range(5):
+        for j in range(5):
+            if list(but_array[i][j].config()["background"])[-1]=="white":
+                return False
+    return True
 def but_func(x,y):
     if list(but_array[x][y].config()["background"])[-1]=="black":
         but_array[x][y].config(bg="white")
@@ -28,6 +34,10 @@ def but_func(x,y):
             but_array[x][y-1].config(bg="white")
         else:
             but_array[x][y-1].config(bg="black")
+    if win_check()==True:
+        label_1.config(text="You Win The Game")
+        
+    
 def rand_gen():
     rand_col=[]
     rand_row=[]
@@ -37,12 +47,18 @@ def rand_gen():
     but_array[rand_row[0]][rand_col[0]].config(bg="white")
     but_array[rand_row[1]][rand_col[1]].config(bg="white")
     but_array[rand_row[2]][rand_col[2]].config(bg="white")
+def reset():
+    for i in range(5):
+        for j in range(5):
+            but_array[i][j].config(bg="black")
+    rand_gen()   
 if __name__=="__main__":
     but_array=[]
-    root=Frame()
+    program=Tk()
+    root=Frame(program)
     root.pack(expand=YES,fill=BOTH)
-    #label_1=Label(root,text="salam")
-    #label_1.pack()
+    label_1=Label(root,text="Play . . .")
+    label_1.pack()
     val=IntVar()
     for i in range(5):
         but_temp=[]
@@ -52,6 +68,14 @@ if __name__=="__main__":
             but_temp.append(Button(frame,text="",command=lambda k=i, w=j:but_func(k,w),bg="black"))
             but_temp[j].pack(side=LEFT,expand=YES,fill=BOTH)
         but_array.append(but_temp)
+    frame_exit=Frame(root)
+    frame_exit.pack(expand=YES,fill=BOTH,side=TOP)
+    frame_reset=Frame(root)
+    frame_reset.pack(expand=YES,fill=BOTH,side=TOP)
+    but_exit=Button(frame_exit,text="Exit",command= lambda : program.destroy())
+    but_exit.pack(expand=YES,side=TOP,fill=BOTH)
+    but_reset=Button(frame_reset,text="Reset",command=lambda : reset())
+    but_reset.pack(expand=YES,fill=BOTH,side=TOP)
     rand_gen()
     root.mainloop()
         
